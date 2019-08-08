@@ -11,6 +11,7 @@ class LibraryTest < MiniTest::Test
   def setup
     @library_1 = Library.new("Central Library")
     @book_1 = Book.new("Lord of the Rings", "J R R Tolkein")
+    @book_2 = Book.new("Pale Fire", "Nabokov")
     @customer_1 = Customer.new("Karolina Kaczmarska")
   end
 
@@ -22,6 +23,14 @@ class LibraryTest < MiniTest::Test
     @library_1.add_book_to_stock(@book_1)
     assert_equal(1, @library_1.stock_count)
   end
+
+  def test_remove_book
+    @library_1.add_book_to_stock(@book_1)
+    @library_1.add_book_to_stock(@book_2)
+    @library_1.remove_book(@book_1)
+    assert_equal(1, @library_1.stock_count)
+  end
+
 
 
 end
